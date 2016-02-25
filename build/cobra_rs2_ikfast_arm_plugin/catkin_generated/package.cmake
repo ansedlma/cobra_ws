@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "cobra_rs2_ikfast_arm_plugin")
+set(cobra_rs2_ikfast_arm_plugin_MAINTAINER "cobra <cobra@todo.todo>")
+set(cobra_rs2_ikfast_arm_plugin_DEPRECATED "")
+set(cobra_rs2_ikfast_arm_plugin_VERSION "0.0.0")
+set(cobra_rs2_ikfast_arm_plugin_BUILD_DEPENDS "moveit_core" "liblapack-dev" "roscpp" "tf_conversions" "pluginlib")
+set(cobra_rs2_ikfast_arm_plugin_RUN_DEPENDS "moveit_core" "liblapack-dev" "roscpp" "tf_conversions" "pluginlib")
+set(cobra_rs2_ikfast_arm_plugin_BUILDTOOL_DEPENDS "catkin")

@@ -1,0 +1,8 @@
+prefix=/home/cobra/cobra_ws/install
+
+Name: cobra_rs2_moveit_config
+Description: Description of cobra_rs2_moveit_config
+Version: 0.2.0
+Cflags: 
+Libs: -L/home/cobra/cobra_ws/install/lib 
+Requires: 

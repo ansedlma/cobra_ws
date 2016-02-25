@@ -1,0 +1,2 @@
+cobra_rs2_ikfast_arm_plugin:cobra_rs2_moveit_config:cobra_rs2_script:moveit_simple_grasps
+-DCATKIN_DEVEL_PREFIX=/home/cobra/cobra_ws/devel -DCMAKE_INSTALL_PREFIX=/home/cobra/cobra_ws/install

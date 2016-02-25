@@ -1,0 +1,8 @@
+prefix=/home/cobra/cobra_ws/install
+
+Name: cobra_rs2_ikfast_arm_plugin
+Description: Description of cobra_rs2_ikfast_arm_plugin
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/cobra/cobra_ws/install/lib 
+Requires: moveit_core pluginlib roscpp tf_conversions

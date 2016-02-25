@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "moveit_simple_grasps")
+set(moveit_simple_grasps_MAINTAINER "Dave Coleman <davetcoleman@gmail.com>")
+set(moveit_simple_grasps_DEPRECATED "")
+set(moveit_simple_grasps_VERSION "1.1.0")
+set(moveit_simple_grasps_BUILD_DEPENDS "roscpp" "eigen_conversions" "std_msgs" "trajectory_msgs" "tf" "tf_conversions" "moveit_ros_planning" "moveit_ros_planning_interface" "moveit_core" "moveit_visual_tools" "message_generation" "actionlib" "moveit_msgs" "geometry_msgs" "actionlib_msgs" "cmake_modules")
+set(moveit_simple_grasps_RUN_DEPENDS "std_msgs" "trajectory_msgs" "moveit_msgs" "geometry_msgs" "actionlib_msgs" "message_runtime" "moveit_visual_tools")
+set(moveit_simple_grasps_BUILDTOOL_DEPENDS "catkin")

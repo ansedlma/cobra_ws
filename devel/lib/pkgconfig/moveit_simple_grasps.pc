@@ -1,0 +1,8 @@
+prefix=/home/cobra/cobra_ws/devel
+
+Name: moveit_simple_grasps
+Description: Description of moveit_simple_grasps
+Version: 1.1.0
+Cflags: -I/home/cobra/cobra_ws/devel/include -I/home/cobra/cobra_ws/src/moveit_simple_grasps/include
+Libs: -L/home/cobra/cobra_ws/devel/lib -lmoveit_simple_grasps -lmoveit_simple_grasps_filter
+Requires: actionlib_msgs geometry_msgs moveit_msgs trajectory_msgs std_msgs message_runtime moveit_visual_tools

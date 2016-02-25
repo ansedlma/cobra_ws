@@ -1,0 +1,264 @@
+<?xml version="1.0" ?>
+<robot name="cobra_rs2">
+
+<!-- ROBOT -->
+
+  <!-- LINKS -->
+
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://cobra_rs2_moveit_config/meshes/base.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="orange">
+        <color rgba="1 0.3 0 1"/>
+      </material>
+      <origin xyz="-0.089 0 0"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.089 0 0"/>
+      <geometry>
+        <mesh filename="package://cobra_rs2_moveit_config/meshes/base.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="body_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://cobra_rs2_moveit_config/meshes/body.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="orangetwo">
+        <color rgba="1 0.2 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://cobra_rs2_moveit_config/meshes/body.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="arm_one_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://cobra_rs2_moveit_config/meshes/upper_arm.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="orange"/>
+      <origin xyz="0.095 0 0" rpy="-1.5708 0 0"/>
+    </visual>
+    <collision>
+      <origin xyz="0.095 0 0" rpy="-1.5708 0 0"/>
+      <geometry>
+        <mesh filename="package://cobra_rs2_moveit_config/meshes/upper_arm.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="arm_two_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://cobra_rs2_moveit_config/meshes/lower_arm.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="orangetwo"/>
+      <origin xyz="0.095 0 0" rpy="-1.5708 0 0"/>
+    </visual>
+    <collision>
+      <origin xyz="0.095 0 0" rpy="-1.5708 0 0"/>
+      <geometry>
+        <mesh filename="package://cobra_rs2_moveit_config/meshes/lower_arm.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="hand_wrist">
+    <visual>
+      <geometry>
+        <mesh filename="package://cobra_rs2_moveit_config/meshes/hand_wrist.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="gray">
+        <color rgba="0.8 0.8 0.8 1"/>
+      </material>
+      <origin xyz="0 0 0" rpy="0 1.5708 0"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 1.5708 0"/>
+      <geometry>
+        <mesh filename="package://cobra_rs2_moveit_config/meshes/hand_wrist.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="hand_tool">
+    <visual>
+      <geometry>
+        <mesh filename="package://cobra_rs2_moveit_config/meshes/hand_tool.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="gray"/>
+      <!-- EEF Offset x= 0.0075 -> -0.0525 -->
+      <origin xyz="-0.0525 0 0" rpy="0 0 0"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.0525 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cobra_rs2_moveit_config/meshes/hand_tool.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="finger_one">
+    <visual>
+      <geometry>
+        <mesh filename="package://cobra_rs2_moveit_config/meshes/finger.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="gray"/>
+      <origin xyz="0.022 0 0"/>
+    </visual>
+    <collision>
+      <origin xyz="0.022 0 0"/>
+      <geometry>
+        <mesh filename="package://cobra_rs2_moveit_config/meshes/finger.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="finger_two">
+    <visual>
+      <geometry>
+        <mesh filename="package://cobra_rs2_moveit_config/meshes/finger.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="gray"/>
+      <origin xyz="0.022 0 0"/>
+    </visual>
+    <collision>
+      <origin xyz="0.022 0 0"/>
+      <geometry>
+        <mesh filename="package://cobra_rs2_moveit_config/meshes/finger.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="thumb_one">
+    <visual>
+      <geometry>
+        <mesh filename="package://cobra_rs2_moveit_config/meshes/thumb.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="gray"/>
+      <origin xyz="0 0 0" rpy="3.1416 0 0"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="3.1416 0 0"/>
+      <geometry>
+        <mesh filename="package://cobra_rs2_moveit_config/meshes/thumb.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="thumb_two">
+    <visual>
+      <geometry>
+        <mesh filename="package://cobra_rs2_moveit_config/meshes/thumb.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="gray"/>
+      <origin xyz="0 0 0" rpy="3.1416 0 0"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="3.1416 0 0"/>
+      <geometry>
+        <mesh filename="package://cobra_rs2_moveit_config/meshes/thumb.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- LINKS END -->
+
+  <!-- JOINTS -->
+
+  <joint name="base_body" type="revolute">
+    <parent link="base_link"/>
+    <child link="body_link"/>
+    <!-- lower: -170 Grad upper: 170 Grad -->
+    <limit lower="-2.96706" upper="2.96706" effort="100" velocity="1" />
+    <axis xyz="0 0 1"/>
+    <origin xyz="0 0 0.14"/>
+  </joint>
+
+  <joint name="body_arm_one" type="revolute">
+    <parent link="body_link"/>
+    <child link="arm_one_link"/>
+    <!-- lower: -25 Grad upper: 135 Grad -->
+    <limit lower="-0.4363" upper="2.3562" effort="100" velocity="1" />
+    <axis xyz="0 0 1"/>
+    <origin xyz="0.041 0 0.105" rpy="1.5708 0 0"/>
+    <!-- Arm im 45 Grad Winkel: p= -.7854 -->
+  </joint>
+
+  <joint name="arm_one_two" type="revolute">
+    <parent link="arm_one_link"/>
+    <child link="arm_two_link"/>
+    <!-- lower: -140 Grad upper: 45 Grad -->
+    <limit lower="-2.4435" upper="0.7854" effort="100" velocity="1" />
+    <axis xyz="0 0 1"/>
+    <origin xyz="0.19 0 0"/>
+  </joint>
+
+  <joint name="arm_two_hand" type="revolute">
+    <parent link="arm_two_link"/>
+    <child link="hand_wrist"/>
+    <!-- lower: 90 Grad upper: 90 Grad -->
+    <limit lower="-1.5708" upper="1.5708" effort="100" velocity="1" />
+    <axis xyz="0 0 1"/>
+    <origin xyz="0.19 0 0"/>
+  </joint>
+
+  <joint name="hand_wrist_tool" type="revolute">
+    <parent link="hand_wrist"/>
+    <child link="hand_tool"/>
+    <!-- lower: -180 Grad upper: 180 Grad -->
+    <limit lower="-3.1416" upper="3.1416" effort="100" velocity="1" />
+    <axis xyz="1 0 0"/>
+    <!-- EEF Offset: (tool + finger+ thumb)= ca 6cm -->
+    <!-- x=0.03 -> 0.09 -->
+    <origin xyz="0.09 0 0" rpy="-1.5708 0 0"/>
+  </joint>
+
+  <joint name="gripper_finger_one" type="prismatic">
+    <parent link="hand_tool"/>
+    <child link="finger_one"/>
+    <!-- 4cm Weg, 8cm Spanne -->
+    <limit lower="0.0" upper="0.04" effort="100" velocity="1" />
+    <axis xyz="0 1 0"/>
+    <!-- EEF Offset: (tool + finger+ thumb)= ca 6cm -->
+    <!-- x=0.001 -> -0.059 -->
+    <origin xyz="-0.059 0.046 0" rpy="3.1416 0 0"/>
+  </joint>
+
+  <joint name="gripper_finger_two" type="prismatic">
+    <parent link="hand_tool"/>
+    <child link="finger_two"/>
+    <mimic joint="gripper_finger_one" multiplier="1.0" offset="0.0" />
+    <!-- 4cm Weg, 8cm Spanne -->
+    <limit lower="0" upper="0.04" effort="100" velocity="1" />
+    <axis xyz="0 1 0"/>
+    <!-- EEF Offset: (tool + finger+ thumb)= ca 6cm -->
+    <!-- x=0.001 -> -0.059 -->
+    <origin xyz="-0.059 -0.046 0"/>
+  </joint>
+
+  <joint name="finger_thumb_one" type="fixed">
+    <parent link="finger_one"/>
+    <child link="thumb_one"/>
+    <origin xyz="0.044 0 0" />
+  </joint>
+
+  <joint name="finger_thumb_two" type="fixed">
+    <parent link="finger_two"/>
+    <child link="thumb_two"/>
+    <origin xyz="0.044 0 0"/>
+  </joint>
+
+  <!-- JOINTS END -->
+
+<!-- ROBOT END -->
+
+</robot>

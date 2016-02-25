@@ -1,0 +1,6 @@
+<robot file="cobra_rs2.dae">
+  <Manipulator name="arm">
+    <base>base_link</base>
+    <effector>hand_tool</effector>
+  </Manipulator>
+</robot>

@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "cobra_rs2_script")
+set(cobra_rs2_script_MAINTAINER "cobra <cobra@todo.todo>")
+set(cobra_rs2_script_DEPRECATED "")
+set(cobra_rs2_script_VERSION "0.0.0")
+set(cobra_rs2_script_BUILD_DEPENDS "rospy")
+set(cobra_rs2_script_RUN_DEPENDS "rospy")
+set(cobra_rs2_script_BUILDTOOL_DEPENDS "catkin")

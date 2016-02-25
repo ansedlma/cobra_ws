@@ -1,0 +1,1 @@
+rosrun moveit_ikfast create_ikfast_moveit_plugin.py cobra_rs2 arm cobra_rs2_ikfast_arm_plugin /home/cobra/cobra_ws/src/cobra_rs2_ikfast_arm_plugin/src/cobra_rs2_arm_ikfast_solver.cpp

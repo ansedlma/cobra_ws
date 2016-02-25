@@ -1,0 +1,16 @@
+<launch>
+
+  <arg name="robot" default="cobra_rs2" />
+
+  <arg name="group"        default="arm" />
+  <arg name="end_effector" default="gripper" />
+
+  <!-- Start the test -->
+  <node name="moveit_simple_grasps_server" pkg="moveit_simple_grasps" type="moveit_simple_grasps_server" output="screen">
+    <param name="group"        value="$(arg group)"/>
+    <param name="end_effector" value="$(arg end_effector)"/>
+
+    <rosparam command="load" file="$(find moveit_simple_grasps)/config/cobra_rs2_grasp_data.yaml"/>
+  </node>
+
+</launch>

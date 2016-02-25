@@ -1,0 +1,8 @@
+prefix=/home/cobra/cobra_ws/install
+
+Name: cobra_rs2_script
+Description: Description of cobra_rs2_script
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/cobra/cobra_ws/install/lib 
+Requires: 

@@ -1,0 +1,8 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: cobra_rs2_moveit_config
+    relative_path: urdf/cobra_rs2.urdf
+  SRDF:
+    relative_path: config/cobra_rs2.srdf
+  CONFIG:
+    generated_timestamp: 1456249304
