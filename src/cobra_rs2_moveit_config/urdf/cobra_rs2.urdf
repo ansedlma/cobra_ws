@@ -205,7 +205,7 @@
   <joint name="arm_two_hand" type="revolute">
     <parent link="arm_two_link"/>
     <child link="hand_wrist"/>
-    <!-- lower: 90 Grad upper: 90 Grad -->
+    <!-- lower: -90 Grad upper: 90 Grad -->
     <limit lower="-1.5708" upper="1.5708" effort="100" velocity="1" />
     <axis xyz="0 0 1"/>
     <origin xyz="0.19 0 0"/>

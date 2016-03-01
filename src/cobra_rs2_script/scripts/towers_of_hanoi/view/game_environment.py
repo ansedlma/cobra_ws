@@ -50,8 +50,8 @@ class World:
                                                    disk.get_color()[2], disk.get_color()[3])
             self.planning_scene_interface.sendColors()
         # wait for sync after publishing collision objects
-        self.planning_scene_interface.waitForSync()
-        rospy.sleep(2)
+        self.planning_scene_interface.waitForSync(5.0)
+        rospy.sleep(5)
 
     """This method creates a box or a cylinder with methods of
     the planning scene interface.
@@ -63,16 +63,19 @@ class World:
         if tower is not None:
             self.planning_scene_interface.addBox(tower.get_name(), self.max_gripper / 100.0, self.max_gripper / 100.0,
                                                  (self.tower_positions[tower.get_id() - 1][2] * 2), position[0],
-                                                 position[1], position[2], False)
+                                                 position[1], position[2])
         else:
             self.planning_scene_interface.addCylinder(disk.get_id(), self.disk_height, disk.get_diameter() / 2,
-                                                      position[0], position[1], position[2], False)
+                                                      position[0], position[1], position[2])
 
     """This method cleans the planning scene.
     :param close: with this flag a new planning scene objects will be removed
     in sync otherwise the object will be deleted without syncing the scene
     """
     def clean_up(self, close=False):
+        if close:
+            # get the actual list after game
+            self.planning_scene_interface = PlanningSceneInterface(REFERENCE_FRAME)
         for name in self.planning_scene_interface.getKnownCollisionObjects():
             if self.DEBUG is 1:
                 print("[DEBUG] Removing object %s" % name)
@@ -82,7 +85,8 @@ class World:
                 print("[DEBUG] Removing attached object %s" % name)
             self.planning_scene_interface.removeAttachedObject(name, False)
         if close:
-            self.planning_scene_interface.waitForSync()
+            self.planning_scene_interface.waitForSync(5.0)
+            pass
 
     """This method corrects the position of the moved disk.
     :param tower: parent tower of the disk
@@ -94,7 +98,7 @@ class World:
             print "[DEBUG] Refresh", disk.get_id(), "pose:", disk.get_position(), "tower size", tower.get_size(),\
                 "tower pose", tower.get_position()
         # remove the disk from planning scene
-        self.planning_scene_interface.removeCollisionObject(disk.get_id())
+        self.planning_scene_interface.removeCollisionObject(disk.get_id(), False)
         # publish collision object and set old color
         self.publish_scene(disk.get_position(), None, disk)
         self.planning_scene_interface.setColor(disk.get_id(), disk.get_color()[0], disk.get_color()[1],

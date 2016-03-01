@@ -18,12 +18,12 @@ DEBUG = 0  # debug mode
 # MOVEMENT_RANGE_ROBOT_LEFT = -2.96706 (rad)
 # MOVEMENT_RANGE_ROBOT_RIGHT = 2.96706 (rad)
 
-# ROBOT
+# ROBOT  # should not be changed
 MAX_GRIPPER = 8.0  # 8 cm range of gripper
 
 # GAME CONFIGURATIONS
 # DISKS
-NUMBER_OF_DISKS = 5  # amount of disks
+NUMBER_OF_DISKS = 3  # amount of disks
 DISK_HEIGHT = 2.5  # cm
 # TOWER
 TOWER_HEIGHT = 0.2  # 20 cm height
@@ -93,7 +93,7 @@ if __name__ == '__main__':
     # robot rest position
     controller.finish()
 
-    # clean up and close
+    # clean up
     world.clean_up(True)
 
     # goodbye screen

@@ -7,6 +7,8 @@
 #
 #
 #######
+import copy
+import math
 import rospy
 import sys
 import moveit_commander
@@ -44,28 +46,25 @@ def create_gripper_translation(direction_vector, desired_distance=0.15, min_dist
     return g_trans
 
 
-# Generate a place position
-def generate_place_loc(position):
-    place_location = []
+# Generate a place locations
+def generate_place_locations( position):
+    pls = []
     pl = PlaceLocation()
     pl.place_pose = position
-    # KDL 2 mm place
-    # pl.place_pose.pose.position.z += 0.02
+    for x in range(0, 360, 2):
+        quat = quaternion_from_euler(0.0, 0.0, round(math.radians(x), 4))
+        pl.place_pose.pose.orientation = Quaternion(*quat)
+        # take object along negative z-axis
+        pl.pre_place_approach = create_gripper_translation(Vector3(0.0, 0.0, -1.0))
+        # go with object along positive z-axis
+        pl.post_place_retreat = create_gripper_translation(Vector3(0.0, 0.0, 1.0))
 
-    quat = quaternion_from_euler(0.0, 0.0, 0.0)
-    pl.place_pose.pose.orientation = Quaternion(*quat)
-    # take object along negative z-axis
-    pl.pre_place_approach = create_gripper_translation(Vector3(0.0, 0.0, -1.0))
-    # go with object along positive z-axis
-    pl.post_place_retreat = create_gripper_translation(Vector3(0.0, 0.0, 1.0))
-
-    pl.post_place_posture = get_pre_grasp_posture()
-    place_location.append(pl)
-
-    return place_location
+        pl.post_place_posture = get_post_place_posture()
+        pls.append(copy.deepcopy(pl))
+        return pls
 
 
-def get_pre_grasp_posture():
+def get_post_place_posture():
     pre_grasp_posture = JointTrajectory()
     pre_grasp_posture.header.frame_id = END_EFFECTOR
     pre_grasp_posture.header.stamp = rospy.Time.now()
@@ -78,10 +77,10 @@ def get_pre_grasp_posture():
 
 def place(group, target, place_position):
     # Obtain possible places
-    place_loc = generate_place_loc(place_position)
+    place_locs = generate_place_locations(place_position)
 
     # create and send place goal
-    goal_place = create_place_goal(group, target, place_loc)
+    goal_place = create_place_goal(group, target, place_locs)
 
     place_ac.send_goal(goal_place)
     place_ac.wait_for_result()

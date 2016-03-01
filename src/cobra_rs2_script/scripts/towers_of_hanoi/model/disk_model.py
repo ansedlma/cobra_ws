@@ -5,8 +5,6 @@ import random
 __author__ = "Andreas Sedlmayer"
 __email__ = "andreas.sedlmayer89@gmail.com"
 
-DEBUG = 0
-
 
 class Disk:
     def __init__(self, ident, position, diameter, debug=0):

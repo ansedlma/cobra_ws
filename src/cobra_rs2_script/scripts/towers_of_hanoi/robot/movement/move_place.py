@@ -32,9 +32,7 @@ class PlaceManager:
 
         # config
         self.disk_height = config.disk_height
-        print self.disk_height
         self.tower_positions = config.tower_positions
-        print self.tower_positions
 
     """This method publishes the place poses as a PoseArray.
     :param places: PoseStamped of place poses
@@ -83,21 +81,24 @@ class PlaceManager:
     """
     def generate_place_locations(self, goal_pose):
         pls = []
+        # get euler axis values
         axis = euler_from_quaternion([goal_pose.pose.orientation.x, goal_pose.pose.orientation.y,
                                       goal_pose.pose.orientation.z, goal_pose.pose.orientation.w])
 
         tolerance = round(math.pi/4, 4)
         step = 0.02
         z_axis_angle = round(axis[2], 4)
-
+        # create a range of possible place locations
         for x in arange((z_axis_angle - tolerance), (z_axis_angle + tolerance), step, dtype=float):
             pl = PlaceLocation()
             pl.place_pose = goal_pose
             quat = quaternion_from_euler(0.0, 0.0, round(x, 4))
             pl.place_pose.pose.orientation = Quaternion(*quat)
+            # gripper comes from negative z axis
             pl.pre_place_approach = self.create_gripper_translation(Vector3(0.0, 0.0, -1.0))
+            # gripper leaves place position on positive z axis
             pl.post_place_retreat = self.create_gripper_translation(Vector3(0.0, 0.0, 1.0))
-
+            # gripper joint values
             pl.post_place_posture = self.get_post_place_posture()
             pls.append(copy.deepcopy(pl))
         return pls
@@ -113,7 +114,7 @@ class PlaceManager:
         post_place_posture.header.frame_id = EEF_LINK
         post_place_posture.header.stamp = rospy.Time.now()
         post_place_posture.joint_names = GRIPPER_JOINTS
-        pos = JointTrajectoryPoint()  # gripper open
+        pos = JointTrajectoryPoint()  # gripper open after place
         pos.positions = [0.0]
         post_place_posture.points.append(pos)
         return post_place_posture
@@ -153,7 +154,7 @@ class PlaceManager:
         place_pose = self.generate_pose(position, tower.get_rad())
         # generate place location
         place_locations = self.generate_place_locations(place_pose)
-        # publish
+        # publish for RViz
         self.publish_place_as_pose(place_locations)
         # execute place action with pick and place interface
         self.pick_and_place_interface.place_with_retry(disk.get_id(), place_locations)
