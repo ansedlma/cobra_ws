@@ -85,11 +85,12 @@ class PlaceManager:
         axis = euler_from_quaternion([goal_pose.pose.orientation.x, goal_pose.pose.orientation.y,
                                       goal_pose.pose.orientation.z, goal_pose.pose.orientation.w])
 
-        tolerance = round(math.pi/4, 4)
-        step = 0.02
+        tolerance = round(math.pi/3, 4)
+        step = 0.01
         z_axis_angle = round(axis[2], 4)
         # create a range of possible place locations
-        for x in arange((z_axis_angle - tolerance), (z_axis_angle + tolerance), step, dtype=float):
+        for x in arange(round((z_axis_angle - tolerance), 0), round((z_axis_angle + tolerance), 0), step, dtype=float):
+        # for x in arange(0, 360, step, dtype=float):
             pl = PlaceLocation()
             pl.place_pose = goal_pose
             quat = quaternion_from_euler(0.0, 0.0, round(x, 4))
